@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RC Car Controller</title>
+  <style>
+    :root { color-scheme: dark light; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif; background: #0b0b0c; color: #e6e6e6; }
+    .container { max-width: 880px; margin: 0 auto; padding: 40px 20px; }
+    .card { background: #131316; border: 1px solid #232327; border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    p { opacity: .9; line-height: 1.6; }
+    code { background: #1b1b20; padding: 2px 6px; border-radius: 6px; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 24px; }
+    .pill { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid #2a2a30; background: #141419; font-size: 12px; letter-spacing: .3px; }
+    a.btn { display: inline-block; background: #0ea5e9; color: white; text-decoration: none; padding: 10px 14px; border-radius: 10px; font-weight: 600; }
+    .footer { margin-top: 28px; opacity: .7; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <span class="pill">Android + Arduino</span>
+      <h1>Bluetooth RC Car Controller</h1>
+      <p>
+        This repository contains a Kotlin + Jetpack Compose Android app and an Arduino firmware (.ino)
+        to control a 4WD RC car via HC‑05 Bluetooth (SPP). Deploying this page provides a stable URL for documentation
+        and downloads; the controller itself runs on Android and communicates with your car's Arduino.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <h3>Build the Android app</h3>
+          <ol>
+            <li>Open the project in Android Studio (Giraffe+).</li>
+            <li>Use a device running Android 7.0+ (API 24+).</li>
+            <li>Build and run the <code>app</code> module.</li>
+          </ol>
+          <p>Main files: <code>app/src/main/java/com/bd/rc/</code></p>
+        </div>
+        <div class="card">
+          <h3>Flash Arduino firmware</h3>
+          <ol>
+            <li>Open <code>arduino/rc_car.ino</code> in Arduino IDE 2.3.2+.</li>
+            <li>Select <code>Arduino Uno</code>, set baud 9600, and upload.</li>
+            <li>Wire per the hardware truth in the README.</li>
+          </ol>
+        </div>
+      </div>
+      <p class="footer">Deployed via Vercel. App logs tagged <code>RC_CAR</code>.</p>
+    </div>
+  </div>
+</body>
+</html>

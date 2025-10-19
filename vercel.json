@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "name": "agentic-7a4b34ae",
+  "cleanUrls": true,
+  "routes": [
+    { "src": "/(.*)", "dest": "/web/index.html" }
+  ]
+}
