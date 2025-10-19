@@ -59,6 +59,14 @@ class RcCarViewModel(
 
     fun disconnect() {
         viewModelScope.launch(ioDispatcher) {
+            try {
+                // Fail-safe: send 'S' before closing
+                bluetoothSocket?.let { sock ->
+                    if (sock.isConnected) {
+                        try { sock.outputStream.write(byteArrayOf('S'.code.toByte())) } catch (_: Throwable) {}
+                    }
+                }
+            } catch (_: Throwable) {}
             try { bluetoothSocket?.close() } catch (_: IOException) {}
             bluetoothSocket = null
             _state.value = _state.value.copy(connectionState = ConnectionState.Disconnected, deviceName = null)

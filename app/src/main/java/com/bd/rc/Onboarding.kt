@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
@@ -24,14 +25,15 @@ private val KEY_ONBOARDED = booleanPreferencesKey("onboarded")
 fun OnboardingGate(content: @Composable () -> Unit) {
     val context = LocalContext.current
     var done by remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
     LaunchedEffect(Unit) {
         val prefs = context.dataStore.data.first()
         done = prefs[KEY_ONBOARDED] == true
     }
     if (done) content() else OnboardingScreen(onGetStarted = {
-        val scope = rememberCoroutineScope()
         scope.launch {
             context.dataStore.edit { it[KEY_ONBOARDED] = true }
+            done = true
         }
     })
 }
